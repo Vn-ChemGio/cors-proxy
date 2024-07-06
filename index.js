@@ -13,7 +13,7 @@ app.use(cors({
 
 app.use(
     createProxyMiddleware({
-      target: 'http://kythuatvov.vn:8080/vovmedia_bak',
+      target: 'http://kythuatvov.vn:8080',
       changeOrigin: true,
     }),
 );
