@@ -1,12 +1,16 @@
-const http = require('http');
-const PORT = 3000;
+const express = require('express')
+const cors = require('cors')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World!');
-});
+const app = express()
+app.use(cors())
+app.use(createProxyMiddleware({
+    router: (req) => new URL(req.path.substring(1)),
+    pathRewrite: (path, req) => (new URL(req.path.substring(1))).pathname,
+    changeOrigin: true,
+    logger: console
+}))
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
-});
+app.listen(8080, () => {
+    console.info('proxy server is running on port 8088')
+})
