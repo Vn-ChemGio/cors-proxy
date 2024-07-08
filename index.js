@@ -12,7 +12,7 @@ app.use(cors({
 }))
 app.use('/live/*',
     createProxyMiddleware({
-      target: `http://media.kythuatvov.vn:1936/live/${req.path.substring(2)}`,
+      target: (req)=> `http://media.kythuatvov.vn:1936/live/${req.path.substring(2)}`,
       changeOrigin: true,
     }),
 );
