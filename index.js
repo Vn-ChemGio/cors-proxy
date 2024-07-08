@@ -10,12 +10,12 @@ app.use(cors({
         'zbrowser://h5.zdn.vn'
     ],
 }))
-app.use(createProxyMiddleware({
-    router: (req) => new URL(req.path.substring(1)),
-    pathRewrite: (path, req) => (new URL(req.path.substring(1))).pathname,
-    changeOrigin: true,
-    logger: console
-}))
+app.use(
+    createProxyMiddleware({
+      target: 'http://kythuatvov.vn:8080',
+      changeOrigin: true,
+    }),
+);
 
 app.listen(3000, () => {
     console.info('proxy server is running on port 8088')
