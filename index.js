@@ -10,6 +10,12 @@ app.use(cors({
         'zbrowser://h5.zdn.vn'
     ],
 }))
+app.use('/live/*',
+    createProxyMiddleware({
+      target: `http://media.kythuatvov.vn:1936/live/${req.path.substring(2)}`,
+      changeOrigin: true,
+    }),
+);
 
 app.use(
     createProxyMiddleware({
