@@ -5,7 +5,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 const app = express()
 app.use(cors({
     origin: [
-        'http://localhost:*',
+        'http://localhost:3000',
         'https://h5.zdn.vn',
         'zbrowser://h5.zdn.vn'
     ],
